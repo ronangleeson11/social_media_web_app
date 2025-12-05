@@ -5,7 +5,7 @@ import requests
 points = 0
 user_url = 'https://cs518userserviceronang.azurewebsites.net/api/user/'
 # user_url = "http://localhost:7071/api/user/"
-func_key = 't8J6d5Q6_j_DhBCwq42BktPCNljBEkEPCaAYP3STDz2DAzFuLOlooA=='
+func_key = 'REDACTED'
 
 class TestUserMethods(unittest.TestCase):
 

@@ -11,7 +11,7 @@ import json
 # from user import user_url, func_key
 #
 # user_url = 'https://cs518userserviceronang.azurewebsites.net/api' #DEPLOYED
-# func_key = 't8J6d5Q6_j_DhBCwq42BktPCNljBEkEPCaAYP3STDz2DAzFuLOlooA==' #DEPLOYED
+# func_key = 'REDACTED' #DEPLOYED
 #
 user_url = 'http://localhost:7071/api' #LOCAL
 func_key = None #LOCAL

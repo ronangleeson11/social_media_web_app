@@ -6,7 +6,7 @@ from pymongo import MongoClient
 from bson import ObjectId
 
 # user_url = 'https://cs518userserviceronang.azurewebsites.net/api/user/' #DEPLOYED
-# func_key = 't8J6d5Q6_j_DhBCwq42BktPCNljBEkEPCaAYP3STDz2DAzFuLOlooA==' #DEPLOYED
+# func_key = 'REDACTED' #DEPLOYED
 
 func_key = None #LOCAL
 user_url = "http://localhost:7071/api/user/" #LOCAL
