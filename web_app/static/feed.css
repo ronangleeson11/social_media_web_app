@@ -1,0 +1,13 @@
+p {
+    background-color:white;
+    width:90%;
+}
+
+div {
+    background-color:lightgray;
+    width:75%;
+    padding:8px;
+    border-style:solid;
+    border-color:gray;
+    margin:1%;
+}

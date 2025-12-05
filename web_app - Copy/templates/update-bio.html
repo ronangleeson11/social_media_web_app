@@ -1,0 +1,13 @@
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+{% include "header.html" %}
+
+{% set user_id = current_user.id %}
+
+<form action="{{ url_for('update_bio', user_id=user_id) }}" method='POST'>
+    <h3>Update Bio</h3>
+    <label for="bio">New Bio:</label>
+    <textarea id="bio" name="bio" rows="4" cols="50">{{ user.bio }}</textarea><br>
+    <button type="submit">Update Bio</button>
+</form>

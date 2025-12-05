@@ -1,0 +1,16 @@
+a:visited {
+    color:black;
+}
+
+a:unvisited {
+    color:black;
+}
+
+a:hover {
+    background-color:lightgray;
+}
+
+a:link {
+    color:black;
+    text-decoration:none;
+}

@@ -1,0 +1,52 @@
+{% include "header.html" %}
+{% set user_id = user._id.get('$oid') %} <!-- specify the specific user showns id so you can call functions with that as the specific user id.-->
+
+<h1>{{ user.username }}</h1>
+
+<!-- add bio -->
+<!-- how do I not have this show up if its a different user than myself-->
+<div>{{user.bio}}</div>
+<br>
+<br>
+<br>
+{% if user_id == current_user.id %}
+
+<a href="{{ url_for('update_bio', user_id=user_id) }}">
+    <button>Change Bio</button>
+</a>
+
+<a href="{{ url_for('user_update', user_id=user_id) }}" method="GET">
+        <button>Change Password</button>
+    </a>
+
+    <!-- Button to go to the Delete User page -->
+    <a href="{{ url_for('user_delete', user_id=user_id) }}" method="GET">
+        <button>Delete User</button>
+    </a>
+
+
+{% else %}
+{% if user_id not in current_user['friends'] %}
+<form action="{{ url_for('add_friend', user_id=current_user.id, friend_id=user_id) }}" method="POST">
+    <button type="submit">Add Friend</button>
+</form>
+{% else %}
+<form action="{{ url_for('remove_friend', user_id=current_user.id, friend_id=user_id) }}" method="POST">
+    <button type="submit">Remove Friend</button>
+</form>
+{% endif %}
+{% endif %}
+
+{% for post in posts | reverse %}
+{% if post.uid == user_id %}
+    <div id="{{post._id}}"><h3>{{post.name}}:</h3>
+    <p>{{post.txt}}</p><!--<a href='{{url_for("like", post_id = post._id)}}'>Like</a> -->
+        <form action="{{ url_for('like', post_id=post._id) }}" method="POST" class="like"> <!--_id or uid?-->
+       {{ post['likes']|length }} <button type="submit">{% if current_user.id in post.likes %}Unlike{% else %}Like{% endif %}</button>
+        </form> <a href='{{url_for("view_comments", post_id=post._id)}}'>{{post['comments']|length}} Comments</a>
+        {% if post.uid == current_user.id %}<form class="deletepost" action="{{ url_for('delete', post_id=post._id) }}" method="POST" class="like">
+            <button type="submit">X</button></form>
+            {% endif %}
+    </div>
+{% endif %}
+{% endfor %}

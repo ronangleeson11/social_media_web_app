@@ -1,0 +1,24 @@
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+{% include "header.html" %}
+<div id="{{post._id}}"><h3>{{post.name}}:</h3>
+    <p>{{post.txt}}</p><!--<a href='{{url_for("like", post_id = post._id)}}'>Like</a> -->
+        <form action="{{ url_for('like', post_id=post._id) }}" method="POST" class="like"> <!--_id or uid?-->
+       {{ post['likes']|length }} <button type="submit">{% if current_user.id in post.likes %}Unlike{% else %}Like{% endif %}</button>
+</form>
+        {% if post.uid == current_user.id %}<form class="deletepost" action="{{ url_for('delete', post_id=post._id) }}" method="POST" class="like">
+            <button type="submit">X</button></form>
+            {% endif %}
+    </div>
+<form action="{{ url_for('make_comment', post_id=post._id) }}" method="POST"> <!--_id or uid?-->
+    <input name="comment_text" type="text"><button type="submit">Comment</button></form>
+{% for comment in post.comments | reverse %}
+<div class="comment"><h3>{% if comment['likes']|length and comment.uid != post.uid %}Ratioed by: {% endif %}{{ comment.name }}:</h3>{{ comment.txt }}<br><br>
+    <form action="{{ url_for('like_comment', post_id=post._id, comment_txt=comment.txt) }}" method="POST" class="like"> <!--_id or uid?-->
+       {{ comment['likes']|length }} <button type="submit">{% if current_user.id in comment.likes %}Unlike{% else %}Like{% endif %}</button>
+</form>
+    {% if comment.uid == current_user.id %}<form class="deletepost" action="{{ url_for('delete_comment', post_id=post._id, comment_txt = comment.txt) }}" method="POST" class="like">
+            <button type="submit">X</button></form>
+            {% endif %}</div>
+{% endfor %}

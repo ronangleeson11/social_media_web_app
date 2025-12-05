@@ -1,0 +1,19 @@
+a:visited {
+    color:black;
+}
+
+a:unvisited {
+    color:black;
+}
+
+a:hover {
+    background-color:lightgray;
+}
+
+a:link {
+    text-decoration:none;
+}
+
+textarea {
+    max-width:512
+}
